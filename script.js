@@ -34,25 +34,29 @@ function grid16() {
         pixel[i] = document.createElement('div');
         pixel[i].classList.add(`pixel${i}`, `div16`);
         container.appendChild(pixel[i]);
-        pixel[i].addEventListener('mousedown', function() {console.log(pixel[j])});
+        pixel[i].addEventListener('mouseover', function() {pixel[j].classList.add('paint')});
     }
 }
 
 function grid32() {
     reset();
     for (i = 0; i < 1024; i++) {
+        let j = i;
         pixel[i] = document.createElement('div');
         pixel[i].classList.add(`pixel${i}`, `div32`);
         container.appendChild(pixel[i]);
+        pixel[i].addEventListener('mouseover', function() {pixel[j].classList.add('paint')});
     }
 }
 
 function grid64() {
     reset();
     for (i = 0; i < 4096; i++) {
+        let j = i;
         pixel[i] = document.createElement('div');
         pixel[i].classList.add(`pixel${i}`, `div64`);
         container.appendChild(pixel[i]);
+        pixel[i].addEventListener('mouseover', function() {pixel[j].classList.add('paint')});
     }
 }
 

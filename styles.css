@@ -50,3 +50,7 @@ body {
     height: 1.5625%;
     width: 1.5625%;
 }
+
+.paint {
+    background-color: blueviolet;
+}
