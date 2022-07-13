@@ -4,11 +4,9 @@
 
 // addEventListeners to change grid size when buttons are pressed /done
 
-// move pixel array and iterator to global scope and use it to add event listener to each pixel
+// add logic to change div colors on hover or click and hold /done
 
-// add logic to change div colors on hover or click and hold
-
-// problem: call event listener on all divs but function only applies to the div being hovered
+// check if event has been triggered more than once and add more black?
 
 
 window.onload = function() {
@@ -31,11 +29,6 @@ button16.addEventListener('click', function() {grid16()});
 button32.addEventListener('click', function() {grid32()});
 button64.addEventListener('click', function() {grid64()});
 
-function paintDiv() {
-    if (mouseDown === true) {
-        pixel[j].classList.add('paint');
-    }
-}
 
 function grid16() {
     reset();
