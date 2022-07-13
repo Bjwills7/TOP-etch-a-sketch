@@ -21,11 +21,20 @@ let container = document.querySelector('.container');
 let button16 = document.querySelector('.button16');
 let button32 = document.querySelector('.button32');
 let button64 = document.querySelector('.button64');
+let mouseDown = false;
+
+document.body.onmousedown = function() {mouseDown = true};
+document.body.onmouseup = function() {mouseDown = false};
 
 button16.addEventListener('click', function() {grid16()});
 button32.addEventListener('click', function() {grid32()});
 button64.addEventListener('click', function() {grid64()});
 
+function paintDiv() {
+    if (mouseDown === true) {
+        pixel[j].classList.add('paint');
+    }
+}
 
 function grid16() {
     reset();
@@ -34,7 +43,11 @@ function grid16() {
         pixel[i] = document.createElement('div');
         pixel[i].classList.add(`pixel${i}`, `div16`);
         container.appendChild(pixel[i]);
-        pixel[i].addEventListener('mouseover', function() {pixel[j].classList.add('paint')});
+        pixel[i].addEventListener('mouseover', function() {
+            if (mouseDown === true) {
+                pixel[j].classList.add('paint')         
+            }
+        });
     }
 }
 
@@ -45,7 +58,11 @@ function grid32() {
         pixel[i] = document.createElement('div');
         pixel[i].classList.add(`pixel${i}`, `div32`);
         container.appendChild(pixel[i]);
-        pixel[i].addEventListener('mouseover', function() {pixel[j].classList.add('paint')});
+        pixel[i].addEventListener('mouseover', function() {
+            if (mouseDown === true) {
+                pixel[j].classList.add('paint')
+            }
+        });
     }
 }
 
@@ -56,7 +73,11 @@ function grid64() {
         pixel[i] = document.createElement('div');
         pixel[i].classList.add(`pixel${i}`, `div64`);
         container.appendChild(pixel[i]);
-        pixel[i].addEventListener('mouseover', function() {pixel[j].classList.add('paint')});
+        pixel[i].addEventListener('mouseover', function() {
+            if (mouseDown === true) {
+                pixel[j].classList.add('paint')
+            }
+        });
     }
 }
 
