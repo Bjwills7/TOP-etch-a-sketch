@@ -22,6 +22,7 @@ let button16 = document.querySelector('.button16');
 let button32 = document.querySelector('.button32');
 let button64 = document.querySelector('.button64');
 let mouseDown = false;
+let colorChoice = document.querySelector('input').value;
 
 document.body.onmousedown = function() {mouseDown = true};
 document.body.onmouseup = function() {mouseDown = false};
@@ -39,13 +40,13 @@ function paintDiv() {
 function grid16() {
     reset();
     for (i = 0; i < 256; i++) {
-        let j = i;
         pixel[i] = document.createElement('div');
         pixel[i].classList.add(`pixel${i}`, `div16`);
         container.appendChild(pixel[i]);
-        pixel[i].addEventListener('mouseover', function() {
+        pixel[i].addEventListener('mouseover', function(e) {
             if (mouseDown === true) {
-                pixel[j].classList.add('paint')         
+                colorChoice = document.querySelector('input').value;
+                e.target.style.backgroundColor = `${colorChoice}`;   
             }
         });
     }
@@ -54,13 +55,13 @@ function grid16() {
 function grid32() {
     reset();
     for (i = 0; i < 1024; i++) {
-        let j = i;
         pixel[i] = document.createElement('div');
         pixel[i].classList.add(`pixel${i}`, `div32`);
         container.appendChild(pixel[i]);
-        pixel[i].addEventListener('mouseover', function() {
+        pixel[i].addEventListener('mouseover', function(e) {
             if (mouseDown === true) {
-                pixel[j].classList.add('paint')
+                colorChoice = document.querySelector('input').value;
+                e.target.style.backgroundColor = `${colorChoice}`;
             }
         });
     }
@@ -69,13 +70,13 @@ function grid32() {
 function grid64() {
     reset();
     for (i = 0; i < 4096; i++) {
-        let j = i;
         pixel[i] = document.createElement('div');
         pixel[i].classList.add(`pixel${i}`, `div64`);
         container.appendChild(pixel[i]);
-        pixel[i].addEventListener('mouseover', function() {
+        pixel[i].addEventListener('mouseover', function(e) {
             if (mouseDown === true) {
-                pixel[j].classList.add('paint')
+                colorChoice = document.querySelector('input').value;
+                e.target.style.backgroundColor = `${colorChoice}`;
             }
         });
     }

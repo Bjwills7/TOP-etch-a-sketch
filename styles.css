@@ -54,3 +54,7 @@ body {
 .paint {
     background-color: blueviolet;
 }
+
+.footerOptions input {
+    border-radius: 40%;
+}
