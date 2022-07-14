@@ -16,15 +16,12 @@
 
 
 window.onload = function() {
-    grid16();
+    grid();
 }
 
 let pixel = [];
 let i = 0;
 let container = document.querySelector('.container');
-let button16 = document.querySelector('.button16');
-let button32 = document.querySelector('.button32');
-let button64 = document.querySelector('.button64');
 let mouseDown = false;
 let colorChoice = document.querySelector('.colorPicker').value;
 
@@ -37,16 +34,12 @@ gridSlider.addEventListener('change', function() {grid()});
 document.body.onmousedown = function() {mouseDown = true};
 document.body.onmouseup = function() {mouseDown = false};
 
-button16.addEventListener('click', function() {grid16()});
-button32.addEventListener('click', function() {grid32()});
-button64.addEventListener('click', function() {grid64()});
 
 function grid() {
     reset();
     let limit = gridSlider.value ** 2;
     let pixelSize = (1 / gridSlider.value) * 100;
     for (i = 0; i < limit; i++) {
-        console.log(i);
         pixel[i] = document.createElement('div');
         pixel[i].classList.add(`pixel${i}`, `divSlide`);
         pixel[i].style.cssText = `width: ${pixelSize}%; height: ${pixelSize}%;`;
@@ -55,22 +48,6 @@ function grid() {
             if (mouseDown === true) {
                 colorChoice = document.querySelector('.colorPicker').value;
                 e.target.style.backgroundColor = `${colorChoice}`;
-            }
-        });
-    }
-}
-
-
-function grid16() {
-    reset();
-    for (i = 0; i < 256; i++) {
-        pixel[i] = document.createElement('div');
-        pixel[i].classList.add(`pixel${i}`, `div16`);
-        container.appendChild(pixel[i]);
-        pixel[i].addEventListener('mouseover', function(e) {
-            if (mouseDown === true) {
-                colorChoice = document.querySelector('.colorPicker').value;
-                e.target.style.backgroundColor = `${colorChoice}`;   
             }
         });
     }
