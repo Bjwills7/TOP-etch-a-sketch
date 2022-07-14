@@ -14,6 +14,8 @@
 <body>
     <h1>Etch a Sketch</h1>
     <div class="options">
+        <label class="rangeLabel" for="range">16</label>
+        <input type="range" name="range" id="gridSlider" value="16" min="1" max="100">
         <h2>Grid Sizes</h2>
         <div class="buttonContainer">
             <button class="buttons button16">16x16</button>
@@ -24,7 +26,7 @@
     <div class="container"></div>
     <div class="footerOptions">
         <h2>Pick a Color!</h2>
-        <input type="color">
+        <input class="colorPicker" type="color">
     </div>
 </body>
 </html>

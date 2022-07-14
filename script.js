@@ -6,6 +6,12 @@
 
 // add logic to change div colors on hover or click and hold /done
 
+// add slider and calculate grid size. /done Then calculate pixel size.
+
+// add random color function
+
+// add media queries for mobile version
+
 // check if event has been triggered more than once and add more black?
 
 
@@ -20,7 +26,13 @@ let button16 = document.querySelector('.button16');
 let button32 = document.querySelector('.button32');
 let button64 = document.querySelector('.button64');
 let mouseDown = false;
-let colorChoice = document.querySelector('input').value;
+let colorChoice = document.querySelector('.colorPicker').value;
+
+// Grid size slider
+let rangeLabel = document.querySelector('.rangeLabel');
+let gridSlider = document.querySelector('#gridSlider');
+gridSlider.addEventListener('change', function() {rangeLabel.textContent = gridSlider.value});
+gridSlider.addEventListener('change', function() {grid()});
 
 document.body.onmousedown = function() {mouseDown = true};
 document.body.onmouseup = function() {mouseDown = false};
@@ -28,6 +40,25 @@ document.body.onmouseup = function() {mouseDown = false};
 button16.addEventListener('click', function() {grid16()});
 button32.addEventListener('click', function() {grid32()});
 button64.addEventListener('click', function() {grid64()});
+
+function grid() {
+    reset();
+    let limit = gridSlider.value ** 2;
+    let pixelSize = (1 / gridSlider.value) * 100;
+    for (i = 0; i < limit; i++) {
+        console.log(i);
+        pixel[i] = document.createElement('div');
+        pixel[i].classList.add(`pixel${i}`, `divSlide`);
+        pixel[i].style.cssText = `width: ${pixelSize}%; height: ${pixelSize}%;`;
+        container.appendChild(pixel[i]);
+        pixel[i].addEventListener('mouseover', function(e) {
+            if (mouseDown === true) {
+                colorChoice = document.querySelector('.colorPicker').value;
+                e.target.style.backgroundColor = `${colorChoice}`;
+            }
+        });
+    }
+}
 
 
 function grid16() {
@@ -38,42 +69,13 @@ function grid16() {
         container.appendChild(pixel[i]);
         pixel[i].addEventListener('mouseover', function(e) {
             if (mouseDown === true) {
-                colorChoice = document.querySelector('input').value;
+                colorChoice = document.querySelector('.colorPicker').value;
                 e.target.style.backgroundColor = `${colorChoice}`;   
             }
         });
     }
 }
 
-function grid32() {
-    reset();
-    for (i = 0; i < 1024; i++) {
-        pixel[i] = document.createElement('div');
-        pixel[i].classList.add(`pixel${i}`, `div32`);
-        container.appendChild(pixel[i]);
-        pixel[i].addEventListener('mouseover', function(e) {
-            if (mouseDown === true) {
-                colorChoice = document.querySelector('input').value;
-                e.target.style.backgroundColor = `${colorChoice}`;
-            }
-        });
-    }
-}
-
-function grid64() {
-    reset();
-    for (i = 0; i < 4096; i++) {
-        pixel[i] = document.createElement('div');
-        pixel[i].classList.add(`pixel${i}`, `div64`);
-        container.appendChild(pixel[i]);
-        pixel[i].addEventListener('mouseover', function(e) {
-            if (mouseDown === true) {
-                colorChoice = document.querySelector('input').value;
-                e.target.style.backgroundColor = `${colorChoice}`;
-            }
-        });
-    }
-}
 
 function reset() {
     while (container.firstChild) {
