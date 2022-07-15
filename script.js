@@ -1,29 +1,7 @@
-// create 16x16 grid on page load /done
-
-// add classes to divs /done
-
-// addEventListeners to change grid size when buttons are pressed /done
-
-// add logic to change div colors on hover or click and hold /done
-
-// add slider and calculate grid size. /done Then calculate pixel size.
-
-// add random color function
-
 // add media queries for mobile version
 
 // check if event has been triggered more than once and add more black?
 
-
-window.onload = function() {
-    grid();
-}
-
-let pixel = [];
-let i = 0;
-let container = document.querySelector('.container');
-let mouseDown = false;
-let colorChoice = document.querySelector('.colorPicker').value;
 
 // Grid size slider
 let rangeLabel = document.querySelector('.rangeLabel');
@@ -31,10 +9,36 @@ let gridSlider = document.querySelector('#gridSlider');
 gridSlider.addEventListener('change', function() {rangeLabel.textContent = gridSlider.value});
 gridSlider.addEventListener('change', function() {grid()});
 
+// color modes
+let randomModeButton = document.querySelector('.randomMode');
+let colorChoice = document.querySelector('.colorPicker').value;
+let colorPicker = document.querySelector('.colorPicker');
+let randomMode = false;
+
+colorPicker.addEventListener('change', function() {
+    randomMode = false;
+});
+
+randomModeButton.addEventListener('click', function() {
+    randomMode = true;
+});
+
+// loads the default grid
+window.onload = function() {
+    grid();
+}
+
+// the divs created for the grid are stored in the pixel array
+let pixel = [];
+let i = 0;
+let container = document.querySelector('.container');
+
+// determines if mouse is held when hovering over grid
+let mouseDown = false;
 document.body.onmousedown = function() {mouseDown = true};
 document.body.onmouseup = function() {mouseDown = false};
 
-
+// creates a grid, size is specified by gridSlider
 function grid() {
     reset();
     let limit = gridSlider.value ** 2;
@@ -45,12 +49,22 @@ function grid() {
         pixel[i].style.cssText = `width: ${pixelSize}%; height: ${pixelSize}%;`;
         container.appendChild(pixel[i]);
         pixel[i].addEventListener('mouseover', function(e) {
-            if (mouseDown === true) {
+            if (mouseDown === true && randomMode === true) {
+                colorChoice = randomRgb();
+                e.target.style.backgroundColor = `${colorChoice}`;
+            } else if (mouseDown === true) {
                 colorChoice = document.querySelector('.colorPicker').value;
                 e.target.style.backgroundColor = `${colorChoice}`;
             }
         });
     }
+}
+
+function randomRgb() {
+    let r = Math.floor(Math.random() * 255);
+    let g = Math.floor(Math.random() * 255);
+    let b = Math.floor(Math.random() * 255);
+    return `rgb(${r}, ${g}, ${b})`;
 }
 
 
