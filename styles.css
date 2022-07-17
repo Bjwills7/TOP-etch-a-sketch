@@ -107,12 +107,7 @@ h2 {
     box-sizing: border-box;
     height: 70vh;
     aspect-ratio: 1 / 1;
-    flex-shrink: 1;
-}
-
-.container .div16 {
-    width: 6.25%;
-    height: 6.25%;
+    user-select: none;
 }
 
 @media screen and (max-width: 700px) {

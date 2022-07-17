@@ -52,7 +52,8 @@ function grid() {
         pixel[i].style.cssText = `width: ${pixelSize}%; height: ${pixelSize}%;`;
         container.appendChild(pixel[i]);
         pixel[i].addEventListener('mouseover', function(e) {draw(e)});
-        pixel[i].addEventListener('touchmove', function(e) {draw(e); console.log(mouseDown)});
+        pixel[i].addEventListener('touchstart', function(e) {draw(e)});
+        pixel[i].addEventListener('touchmove', function(e) {draw(e)});
     }
 }
 
