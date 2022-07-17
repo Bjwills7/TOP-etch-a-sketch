@@ -51,29 +51,34 @@ function grid() {
         pixel[i].classList.add(`pixel${i}`, `divSlide`);
         pixel[i].style.cssText = `width: ${pixelSize}%; height: ${pixelSize}%;`;
         container.appendChild(pixel[i]);
+        pixel[i].addEventListener('click', function(e) {draw(e)});
         pixel[i].addEventListener('mouseover', function(e) {draw(e)});
         pixel[i].addEventListener('touchstart', function(e) {draw(e)});
         pixel[i].addEventListener('touchmove', function(e) {drawMobile(e)});
     }
 }
 
-
-// Need to limit hoveredDiv to .container?
 function drawMobile(e) {
     if (mouseDown === true && randomMode === true) {
         colorChoice = randomRgb();
         let x = e.touches[0].clientX;
-        let y = e.touches[0].clientX;
+        let y = e.touches[0].clientY;
         let hoveredDiv = document.elementFromPoint(x, y);
-        hoveredDiv.style.backgroundColor = `${colorChoice}`;
-        e.preventDefault();
+        let parent = hoveredDiv.parentElement.className;
+        if (parent === 'container') {
+            hoveredDiv.style.backgroundColor = `${colorChoice}`;
+            e.preventDefault();
+        }
     } else if (mouseDown === true) {
         colorChoice = document.querySelector('.colorPicker').value;
         let x = e.touches[0].clientX;
-        let y = e.touches[0].clientX;
+        let y = e.touches[0].clientY;
         let hoveredDiv = document.elementFromPoint(x, y);
-        hoveredDiv.style.backgroundColor = `${colorChoice}`;
-        e.preventDefault();
+        let parent = hoveredDiv.parentElement.className;
+        if (parent === 'container') {
+            hoveredDiv.style.backgroundColor = `${colorChoice}`;
+            e.preventDefault();
+        }    
     }
 }
 
