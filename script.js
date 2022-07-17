@@ -61,9 +61,11 @@ function draw(e) {
     if (mouseDown === true && randomMode === true) {
         colorChoice = randomRgb();
         e.target.style.backgroundColor = `${colorChoice}`;
+        e.preventDefault();
     } else if (mouseDown === true) {
         colorChoice = document.querySelector('.colorPicker').value;
         e.target.style.backgroundColor = `${colorChoice}`;
+        e.preventDefault();
     }
 }
 
