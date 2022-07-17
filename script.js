@@ -37,6 +37,9 @@ let container = document.querySelector('.container');
 let mouseDown = false;
 document.body.onmousedown = function() {mouseDown = true};
 document.body.onmouseup = function() {mouseDown = false};
+document.body.addEventListener('touchstart', function() {mouseDown = true});
+document.body.addEventListener('touchmove', function() {mouseDown = true});
+document.body.addEventListener('touchend', function() {mouseDown = false});
 
 // creates a grid, size is specified by gridSlider
 function grid() {
@@ -48,15 +51,18 @@ function grid() {
         pixel[i].classList.add(`pixel${i}`, `divSlide`);
         pixel[i].style.cssText = `width: ${pixelSize}%; height: ${pixelSize}%;`;
         container.appendChild(pixel[i]);
-        pixel[i].addEventListener('mouseover', function(e) {
-            if (mouseDown === true && randomMode === true) {
-                colorChoice = randomRgb();
-                e.target.style.backgroundColor = `${colorChoice}`;
-            } else if (mouseDown === true) {
-                colorChoice = document.querySelector('.colorPicker').value;
-                e.target.style.backgroundColor = `${colorChoice}`;
-            }
-        });
+        pixel[i].addEventListener('mouseover', function(e) {draw(e)});
+        pixel[i].addEventListener('touchmove', function(e) {draw(e); console.log(mouseDown)});
+    }
+}
+
+function draw(e) {
+    if (mouseDown === true && randomMode === true) {
+        colorChoice = randomRgb();
+        e.target.style.backgroundColor = `${colorChoice}`;
+    } else if (mouseDown === true) {
+        colorChoice = document.querySelector('.colorPicker').value;
+        e.target.style.backgroundColor = `${colorChoice}`;
     }
 }
 
