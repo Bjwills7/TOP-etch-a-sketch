@@ -21,6 +21,14 @@ randomModeButton.addEventListener('click', function() {randomMode = true});
 
 colorModeButton.addEventListener('click', function() {randomMode = false});
 
+colorModeButton.addEventListener('mouseover', function() {
+    let shadowColor = document.querySelector('.colorPicker').value;
+    colorModeButton.style.boxShadow = `inset 0 0 10px ${shadowColor}`;
+});
+colorModeButton.addEventListener('mouseout', function() {
+    colorModeButton.style.boxShadow = 'none';
+});
+
 // reset button
 let resetButton = document.querySelector('.resetGrid');
 resetButton.addEventListener('click', function() {grid()});
