@@ -53,7 +53,28 @@ function grid() {
         container.appendChild(pixel[i]);
         pixel[i].addEventListener('mouseover', function(e) {draw(e)});
         pixel[i].addEventListener('touchstart', function(e) {draw(e)});
-        pixel[i].addEventListener('touchmove', function(e) {draw(e)});
+        pixel[i].addEventListener('touchmove', function(e) {drawMobile(e)});
+    }
+}
+
+
+// Need to limit hoveredDiv to .container?
+function drawMobile(e) {
+    if (mouseDown === true && randomMode === true) {
+        colorChoice = randomRgb();
+        let x = e.touches[0].clientX;
+        let y = e.touches[0].clientX;
+        let hoveredDiv = document.elementFromPoint(x, y);
+        console.log(hoveredDiv);
+        hoveredDiv.style.backgroundColor = `${colorChoice}`;
+        e.preventDefault();
+    } else if (mouseDown === true) {
+        colorChoice = document.querySelector('.colorPicker').value;
+        let x = e.touches[0].clientX;
+        let y = e.touches[0].clientX;
+        let hoveredDiv = document.elementFromPoint(x, y);
+        hoveredDiv.style.backgroundColor = `${colorChoice}`;
+        e.preventDefault();
     }
 }
 
