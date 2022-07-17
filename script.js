@@ -8,15 +8,19 @@ gridSlider.addEventListener('change', function() {grid()});
 let randomModeButton = document.querySelector('.randomMode');
 let colorChoice = document.querySelector('.colorPicker').value;
 let colorPicker = document.querySelector('.colorPicker');
+let colorModeButton = document.querySelector('.colorMode');
 let randomMode = false;
 
-colorPicker.addEventListener('change', function() {
-    randomMode = false;
-});
+colorPicker.addEventListener('change', function() {randomMode = false});
 
-randomModeButton.addEventListener('click', function() {
-    randomMode = true;
-});
+randomModeButton.addEventListener('click', function() {randomMode = true});
+
+colorModeButton.addEventListener('click', function() {randomMode = false});
+
+// reset button
+let resetButton = document.querySelector('.resetGrid');
+resetButton.addEventListener('click', function() {grid()});
+
 
 // loads the default grid
 window.onload = function() {
