@@ -1,8 +1,3 @@
-// add media queries for mobile version
-
-// check if event has been triggered more than once and add more black?
-
-
 // Grid size slider
 let rangeLabel = document.querySelector('.rangeLabel');
 let gridSlider = document.querySelector('#gridSlider');
@@ -51,7 +46,7 @@ function grid() {
         pixel[i].classList.add(`pixel${i}`, `divSlide`);
         pixel[i].style.cssText = `width: ${pixelSize}%; height: ${pixelSize}%;`;
         container.appendChild(pixel[i]);
-        pixel[i].addEventListener('click', function(e) {draw(e)});
+        pixel[i].addEventListener('mousedown', function(e) {mouseDown = true; draw(e)});
         pixel[i].addEventListener('mouseover', function(e) {draw(e)});
         pixel[i].addEventListener('touchstart', function(e) {draw(e)});
         pixel[i].addEventListener('touchmove', function(e) {drawMobile(e)});
