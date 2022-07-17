@@ -1,8 +1,12 @@
 // Grid size slider
 let rangeLabel = document.querySelector('.rangeLabel');
 let gridSlider = document.querySelector('#gridSlider');
-gridSlider.addEventListener('change', function() {rangeLabel.textContent = gridSlider.value});
+gridSlider.addEventListener('change', function() {
+    let sliderValue = Math.abs(gridSlider.value);
+    sliderText(sliderValue);
+});
 gridSlider.addEventListener('change', function() {grid()});
+
 
 // color modes
 let randomModeButton = document.querySelector('.randomMode');
@@ -43,8 +47,9 @@ document.body.addEventListener('touchend', function() {mouseDown = false});
 // creates a grid, size is specified by gridSlider
 function grid() {
     reset();
-    let limit = gridSlider.value ** 2;
-    let pixelSize = (1 / gridSlider.value) * 100;
+    let sliderValue = Math.abs(gridSlider.value);
+    let limit = sliderValue ** 2;
+    let pixelSize = (1 / sliderValue) * 100;
     for (i = 0; i < limit; i++) {
         pixel[i] = document.createElement('div');
         pixel[i].classList.add(`pixel${i}`, `divSlide`);
@@ -104,5 +109,15 @@ function randomRgb() {
 function reset() {
     while (container.firstChild) {
         container.removeChild(container.firstChild);
+    }
+}
+
+function sliderText(value) {
+    if (value >= 75) {
+        rangeLabel.textContent = 'Small';
+    } else if (value <= 25) {
+        rangeLabel.textContent = 'Large';
+    } else {
+        rangeLabel.textContent = 'Medium';
     }
 }
