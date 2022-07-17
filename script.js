@@ -65,7 +65,6 @@ function drawMobile(e) {
         let x = e.touches[0].clientX;
         let y = e.touches[0].clientX;
         let hoveredDiv = document.elementFromPoint(x, y);
-        console.log(hoveredDiv);
         hoveredDiv.style.backgroundColor = `${colorChoice}`;
         e.preventDefault();
     } else if (mouseDown === true) {
