@@ -118,6 +118,7 @@ h2 {
 
     .randomMode {
         margin-right: 5px;
+        margin-left: -5px;
     }
 
     .rangeContainer {
